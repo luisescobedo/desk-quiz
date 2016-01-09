@@ -1,0 +1,12 @@
+
+// Override bootstrap styles for float 'left' navbar and center its content
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+  margin-bottom: 8rem;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
