@@ -6,6 +6,7 @@
 'use strict';
 import Thing from '../api/thing/thing.model';
 import User from '../api/user/user.model';
+import Question from '../api/question/question.model';
 
 Thing.find({}).removeAsync()
   .then(() => {
@@ -55,5 +56,37 @@ User.find({}).removeAsync()
     })
     .then(() => {
       console.log('finished populating users');
+    });
+  });
+
+Question.find({}).removeAsync()
+  .then(() => {
+    Question.createAsync({
+      title: 'Booya son! Question 1.',
+      type: 'multipleChoice',
+      order: 1,
+      answers: [{
+        text: "You all must of forgot",
+        isCorrectAnswer: false,
+      },
+      {
+        text: "That I am the best",
+        isCorrectAnswer: true,
+      }]
+    },{
+      title: 'Stop drop, cut it out, open up shop',
+      type: 'multipleChoice',
+      order: 2,
+      answers: [{
+        text: "No",
+        isCorrectAnswer: false,
+      },
+      {
+        text: "How the rough riders roll",
+        isCorrectAnswer: true,
+      }]
+    },)
+    .then(() => {
+      console.log('finished populating questions');
     });
   });

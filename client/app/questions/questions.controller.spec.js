@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Controller: QuestionCtrl', function () {
+describe('Controller: QuestionsCtrl', function () {
 
   // load the controller's module
   beforeEach(module('deskQuizApp'));
 
-  var QuestionCtrl, scope;
+  var QuestionsCtrl, scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    QuestionCtrl = $controller('QuestionCtrl', {
+    QuestionsCtrl = $controller('QuestionsCtrl', {
       $scope: scope
     });
   }));
