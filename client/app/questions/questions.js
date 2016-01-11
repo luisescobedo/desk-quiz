@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('deskQuizApp')
-  .config(function ($stateProvider) {
+  .config(function ($stateProvider,  $urlRouterProvider) {
     $stateProvider
       .state('questions', {
         // With abstract set to true, that means this state can not be explicitly activated.
@@ -10,19 +10,39 @@ angular.module('deskQuizApp')
         url: '/questions',
         templateUrl: 'app/questions/questions.html',
         controller: 'QuestionsCtrl',
-        controllerAs: 'questions',
+        controllerAs: 'qts',
         authenticate: true,
         resolve: {
-          questionsAll: ['questions', function(questions) {
+          questions: ['questions', function(questions) {
             return questions.all();
           }
         ]}
       })
       .state('questions.detail', {
         url: '/{questionId}',
-        templateUrl: 'app/questions/questions.detail.html',
-        controller: 'QuestionsDetailCtrl',
-        controllerAs: 'questionsDetail',
+        views: {
+          '': {
+            templateUrl: 'app/questions/questions.detail.html',
+            controller: 'QuestionsDetailCtrl',
+            controllerAs: 'qd',
+          }
+        },
         authenticate: true
-      });;
+      })
+      .state('review', {
+        url: '/review',
+        resolve: {
+          questions: ['questions', function(questions) {
+            return questions.all();
+          }
+        ]},
+        views: {
+          '': {
+            templateUrl: 'app/questions/questions.review.html',
+            controller: 'QuestionsReviewCtrl',
+            controllerAs: 'qr',
+          }
+        },
+        authenticate: true
+      });
   });

@@ -67,10 +67,12 @@ Question.find({}).removeAsync()
       order: 1,
       answers: [{
         text: "You all must of forgot",
+        order: 1,
         isCorrectAnswer: false,
       },
       {
         text: "That I am the best",
+        order: 2,
         isCorrectAnswer: true,
       }]
     },{
@@ -79,10 +81,12 @@ Question.find({}).removeAsync()
       order: 2,
       answers: [{
         text: "No",
+        order: 1,
         isCorrectAnswer: false,
       },
       {
         text: "How the rough riders roll",
+        order: 2,
         isCorrectAnswer: true,
       }]
     },)

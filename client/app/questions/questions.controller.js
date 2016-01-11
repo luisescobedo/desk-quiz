@@ -4,7 +4,7 @@
 
 class QuestionsCtrl {
 
-  constructor($scope, $http, questionsAll) {
+  constructor($scope, $http, questions) {
   //  this.$http = $http;
   //  $scope.questions = questions;
    // this.awesomeThings = [];

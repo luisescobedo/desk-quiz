@@ -7,9 +7,10 @@ class LoginController {
   submitted = false;
   //end-non-standard
 
-  constructor(Auth, $state) {
+  constructor(Auth, $state, $localStorage) {
     this.Auth = Auth;
     this.$state = $state;
+    this.$storage = $localStorage;
   }
 
   login(form) {
@@ -22,7 +23,8 @@ class LoginController {
       })
       .then(() => {
         // Logged in, redirect to home
-        this.$state.go('main');
+        this.$storage.answers = {};
+        this.$state.go('questions.detail',{questionId: 1});
       })
       .catch(err => {
         this.errors.other = err.message;

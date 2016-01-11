@@ -9,11 +9,12 @@ angular.module('deskQuizApp', [
   'ngSanitize',
   'ui.router',
   'ui.bootstrap',
-  'validation.match'
+  'validation.match',
+  'ngStorage',
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider
-      .otherwise('/');
+      .otherwise('questions/1');
 
     $locationProvider.html5Mode(true);
   });

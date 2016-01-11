@@ -5,6 +5,7 @@ var mongoose = require('bluebird').promisifyAll(require('mongoose'));
 // If the type of the Question is "fillBlanks" then "isCorrectAnswer" is not used
 var AnswerSchema = new mongoose.Schema({
   text: String,
+  order: Number,
   isCorrectAnswer: Boolean,
 });
 
