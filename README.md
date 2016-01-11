@@ -13,12 +13,14 @@ I thought about running it on Parse, or a Sinatra/ruby back-end, but given the t
 
 I used MongoDB to store questions and users, but decided to use $localStorage (via [ngStorage](https://github.com/gsklee/ngStorage)) to keep track of a user's answers to questions. Really I just did this to show that I could use $localStorage more than anything as it would have been easier (but more back-end code) to store those in DB. Most likely not a design choice I would make in Production :)
 
-### Styling
-
-For all things pretty I used:
-- Bootstrap with Sass port (Though I do prefer Angular Material... but that discussion is for another day)
-- ngAnimate for animations
-- [Awesome Bootstrap Checkbox](https://github.com/flatlogic/awesome-bootstrap-checkbox)
+### Options, Components, and Styling
+* For routing, I used the ever popular angular-ui [ui-Router](https://github.com/angular-ui/ui-router)
+* There is a fair amount of ES6 I sprinkled in so everything is run through Babel.
+* Stylesheets: Sass (with some mixin overrides)
+* For all things pretty I used:
+  * Bootstrap with Sass port (Though I do prefer Angular Material... but that discussion is for another day)
+  * ngAnimate for animations
+  * [Awesome Bootstrap Checkbox](https://github.com/flatlogic/awesome-bootstrap-checkbox)
 
 ### Testing (or lack thereof...)
 
