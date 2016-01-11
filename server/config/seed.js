@@ -126,7 +126,7 @@ Question.find({}).removeAsync()
       answers: [{
         text: 'fn.apply(this, stringsArray)',
         order: 1,
-        isCorrectAnswer: false,
+        isCorrectAnswer: true,
       },
       {
         text: 'fn.call(this, stringsArray)',
@@ -136,7 +136,7 @@ Question.find({}).removeAsync()
       {
         text: 'fn.bind(this, stringsArray)',
         order: 3,
-        isCorrectAnswer: true,
+        isCorrectAnswer: false,
       },]
     },{
       title: '____ and ____ would be the HTML tags you would use to display a menu item and its description.',

@@ -11,11 +11,6 @@ angular.module('deskQuizApp')
     factory.all = function () {
       return questions;
     };
-    // factory.get = function (id) {
-    //   return questions.then(function(){
-    //     return utils.findById(questions, id);
-    //   })
-    // };
     return factory;
 
   }]);

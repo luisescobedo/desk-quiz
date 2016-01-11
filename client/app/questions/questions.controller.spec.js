@@ -4,18 +4,22 @@ describe('Controller: QuestionsCtrl', function () {
 
   // load the controller's module
   beforeEach(module('deskQuizApp'));
-
-  var QuestionsCtrl, scope;
+  beforeEach(module('stateMock'));
+  var QuestionsCtrl, scope, state, $httpBackend;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
+  beforeEach(inject(function (_$httpBackend_, $controller, $rootScope, $state) {
+    $httpBackend = _$httpBackend_;
     scope = $rootScope.$new();
+    state = $state;
     QuestionsCtrl = $controller('QuestionsCtrl', {
-      $scope: scope
+      $scope: scope,
+      questions: ['Q1','Q2','Q3'],
     });
+
   }));
 
-  it('should ...', function () {
-    expect(1).toEqual(1);
+  it('should attach a list of questions to the questions controller', function () {
+    expect(QuestionsCtrl.questions.length).toEqual(3);
   });
 });
