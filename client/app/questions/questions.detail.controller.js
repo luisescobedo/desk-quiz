@@ -4,7 +4,7 @@
 
 class QuestionsDetailCtrl {
   submitted = false;
-  constructor($scope, $state, $stateParams, questions, $localStorage) {
+  constructor($scope, $state, $stateParams, questions, $localStorage, $sce) {
     this.questions = questions;
     this.question = questions.find((e)=>e.order===parseInt($stateParams.questionId));
 
@@ -12,7 +12,9 @@ class QuestionsDetailCtrl {
     if (!this.question) {
       $state.go('questions.detail',{ questionId: 1 });
     }
-
+    // Title might contain HTML with formatting, trust it
+    this.title = $sce.trustAsHtml(this.question.order + ". " + this.question.title);
+    this.filledAnswers = {};
     this.$storage = $localStorage;
     this.$stateParams = $stateParams;
     this.$state = $state;
@@ -27,7 +29,12 @@ class QuestionsDetailCtrl {
     this.submitted = true;
     if (form.$valid) {
       // save the user's answer in local storage
-      this.$storage.answers[this.question._id] = this.selectedAnswer;
+      if (this.question.type === 'multipleChoice') {
+        this.$storage.answers[this.question._id] = this.selectedAnswer;
+      } else {
+        this.$storage.answers[this.question._id] = this.filledAnswers;
+      }
+
       this.submitted = false;
 
       // go to next question, or the review screen if finished

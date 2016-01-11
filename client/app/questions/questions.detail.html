@@ -1,20 +1,27 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 questions-title">
-      <h3>{{qd.question.order + ". " + qd.question.title }}</h3>
+      <h3 ng-bind-html="qd.title"> </h3>
     </div>
     <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 well well-lg" style="padding: 3.5rem 5.0rem 5.0rem 5.0rem">
       <form class="form" name="form"  ng-submit="qd.continue(form)" novalidate>
-        <div ng-repeat="answer in qd.question.answers">
-          <div class="radio radio-primary">
-            <input type="radio" name="questionsAnswer" id="radio{{$index}}" ng-model="qd.selectedAnswer" value="{{answer._id}}">
-            <label for="radio{{$index}}">
-                {{qd.indexChar(answer.order) + ". " + answer.text}}
-            </label>
+        <div ng-switch on="qd.question.type">
+          <div ng-switch-when="multipleChoice" ng-repeat="answer in qd.question.answers">
+            <div class="radio radio-primary">
+              <input type="radio" name="questionsAnswer" id="radio{{$index}}" ng-model="qd.selectedAnswer" value="{{answer._id}}" required>
+              <label for="radio{{$index}}">
+                  {{qd.indexChar(answer.order) + ". " + answer.text}}
+              </label>
+            </div>
+          </div>
+          <div ng-switch-when="fillBlanks" ng-repeat="answer in qd.question.answers">
+            <div style="padding-bottom:2.5rem" class="colx-xs-12 col-sm-6">
+              <input type="text" placeholder="Enter answer #{{answer.order}}" name="input{{answer._id}}" class="form-control input-lg" ng-model="qd.filledAnswers[answer._id]">
+            </div>
           </div>
         </div>
         <div style="padding-top: 2.5rem">
-          <button class="btn btn-primary btn-lg btn-block btn-login" type="submit">
+          <button class="btn btn-primary btn-lg btn-block btn-login" type="submit" ng-disabled="form.questionsAnswer.$invalid">
             Continue
           </button>
         </div>
