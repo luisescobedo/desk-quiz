@@ -2,6 +2,7 @@
 
 Thanks for letting me work this fun little take home project :) I hadn't stretched my Angular legs for months since starting with React so it was great to take it out for a spin again. I missed it so.
 
+## Demo
 The deployed demo on Heroku can be found [here](https://quizyluis.herokuapp.com)
 
 ## My Notes
