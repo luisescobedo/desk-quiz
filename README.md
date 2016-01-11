@@ -9,18 +9,19 @@ The deployed demo on Heroku can be found [here](https://quizyluis.herokuapp.com)
 I created the project on a MEAN stack with the Yeoman angular-full-stack package. I found it let me concentrate a little more on the front-end without having to worry about wiring a lot of the back-end plumbing.
 I thought about running it on Parse, or a Sinatra/ruby back-end, but given the time constraints this seemed easiest.
 
-### DB and LocalStorage
-
-I used MongoDB to store questions and users, but decided to use $localStorage (via [ngStorage](https://github.com/gsklee/ngStorage)) to keep track of a user's answers to questions. Really I just did this to show that I could use $localStorage more than anything as it would have been easier (but more back-end code) to store those in DB. Most likely not a design choice I would make in Production :)
-
 ### Options, Components, and Styling
+* I used plain JS and JQLite with some ES6 instead of CoffeeScript (scripts are run through [Babel](https://babeljs.io/))
+* I also used HTML rather than HAML. I actually like writing vanilla HTML rather than HAML, but not a huge difference.
 * For routing, I used the ever popular angular-ui [ui-router](https://github.com/angular-ui/ui-router)
-* There is a fair amount of ES6 I sprinkled in so everything is run through [Babel](https://babeljs.io/)
 * Stylesheets: Sass (with some mixin overrides)
 * For all things pretty I used:
   * Bootstrap with Sass port (Though I do prefer Angular Material... but that discussion is for another day)
   * ngAnimate for animations
   * [Awesome Bootstrap Checkbox](https://github.com/flatlogic/awesome-bootstrap-checkbox)
+
+### DB and LocalStorage
+
+I used MongoDB to store questions and users, but decided to use $localStorage (via [ngStorage](https://github.com/gsklee/ngStorage)) to keep track of a user's answers to questions. Really I just did this to show that I could use $localStorage more than anything as it would have been easier (but more back-end code) to store those in DB. Most likely not a design choice I would make in Production :)
 
 ### Testing (or lack thereof...)
 
