@@ -7,6 +7,7 @@ angular.module('deskQuizApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'ngAnimate',
   'ui.router',
   'ui.bootstrap',
   'validation.match',
