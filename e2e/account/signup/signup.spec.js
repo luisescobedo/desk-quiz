@@ -27,8 +27,6 @@ describe('Signup View', function() {
   });
 
   it('should include signup form with correct inputs and submit button', function() {
-    expect(page.form.name.getAttribute('type')).toBe('text');
-    expect(page.form.name.getAttribute('name')).toBe('name');
     expect(page.form.email.getAttribute('type')).toBe('email');
     expect(page.form.email.getAttribute('name')).toBe('email');
     expect(page.form.password.getAttribute('type')).toBe('password');
@@ -51,7 +49,7 @@ describe('Signup View', function() {
       var navbar = require('../../components/navbar/navbar.po');
 
       expect(browser.getCurrentUrl()).toBe(config.baseUrl + '/');
-      expect(navbar.navbarAccountGreeting.getText()).toBe('Hello ' + testUser.name);
+      expect(navbar.navbarAccountGreeting.getText()).toBe('Hi ' + testUser.email);
     });
 
     it('should indicate signup failures', function() {

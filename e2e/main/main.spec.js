@@ -11,8 +11,7 @@ describe('Main View', function() {
   });
 
   it('should include jumbotron with correct data', function() {
-    expect(page.h1El.getText()).toBe('\'Allo, \'Allo!');
-    expect(page.imgEl.getAttribute('src')).toMatch(/yeoman.png$/);
-    expect(page.imgEl.getAttribute('alt')).toBe('I\'m Yeoman');
+    expect(page.h3El.getText()).toBe('Welcome to the great Desk.com quiz of 2016');
+    expect(page.aEl.getAttribute('alt')).toBe('start quiz');
   });
 });

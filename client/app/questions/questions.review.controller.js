@@ -3,14 +3,16 @@
 (function() {
 
 class QuestionsReviewCtrl {
-  constructor(questions, $localStorage, $sce) {
+  constructor(questions, $localStorage, $sce, Auth) {
     let numCorrect = 0;
     this.pct = 0;
+    this.userId = Auth.getCurrentUser()._id;
+
     // Let's grade the questions and figure out the pct correct
-    this.questions = questions.map((q)=>{
-        const userAnswer = $localStorage.answers[q._id];
+    this.questionsReview = questions.map((q)=>{
+        const userAnswer = $localStorage.answers[this.userId][q._id];
         // Title might contain HTML with formatting, trust it
-        q.title = $sce.trustAsHtml(q.order + ". " + q.title);
+        q.titleReview = $sce.trustAsHtml(q.order + ". " + q.title);
 
         if (q.type === 'multipleChoice') {
           const correctAnswer = q.answers.find((ans)=>{

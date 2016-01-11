@@ -4,7 +4,7 @@
 
 class QuestionsDetailCtrl {
   submitted = false;
-  constructor($scope, $state, $stateParams, questions, $localStorage, $sce) {
+  constructor($scope, $state, $stateParams, questions, $localStorage, $sce, Auth) {
     this.questions = questions;
     this.question = questions.find((e)=>e.order===parseInt($stateParams.questionId));
 
@@ -12,6 +12,8 @@ class QuestionsDetailCtrl {
     if (!this.question) {
       $state.go('questions.detail',{ questionId: 1 });
     }
+
+    this.userId = Auth.getCurrentUser()._id;
     // Title might contain HTML with formatting, trust it
     this.title = $sce.trustAsHtml(this.question.order + ". " + this.question.title);
     this.filledAnswers = {};
@@ -21,6 +23,9 @@ class QuestionsDetailCtrl {
     if (!this.$storage.answers) {
       this.$storage.answers = {};
     }
+    if (!this.$storage.numQuestions) {
+      this.$storage.numQuestions = questions.length;
+    }
   }
   indexChar(index) {
     return String.fromCharCode(64 + index);
@@ -28,11 +33,14 @@ class QuestionsDetailCtrl {
   continue(form) {
     this.submitted = true;
     if (form.$valid) {
+      if (!this.$storage.answers[this.userId]) {
+        this.$storage.answers[this.userId] = {};
+      }
       // save the user's answer in local storage
       if (this.question.type === 'multipleChoice') {
-        this.$storage.answers[this.question._id] = this.selectedAnswer;
+        this.$storage.answers[this.userId][this.question._id] = this.selectedAnswer;
       } else {
-        this.$storage.answers[this.question._id] = this.filledAnswers;
+        this.$storage.answers[this.userId][this.question._id] = this.filledAnswers;
       }
 
       this.submitted = false;
